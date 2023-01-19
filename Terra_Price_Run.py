@@ -4,9 +4,9 @@ from PIL import Image
 
 
 # Layout
-st.set_page_config(page_title='Terra MegaDashboard',
+st.set_page_config(page_title='Terra Price Run Investigation',
                    page_icon=':bar_chart:', layout='wide')
-st.title('Terra Dashboard')
+st.title('Terra Price Run Investigation')
 
 # Content
 c1, c2, c3, c4 = st.columns(4)
@@ -17,7 +17,7 @@ with c1:
     st.text(" \n")
     st.text(" \n")
 
-    st.write("""# 🌔Terra (blockchain) #""")
+    st.write("""# 🌔Terra (Investigation) #""")
 
 st.write("""
 Terra is a blockchain protocol and payment platform used for algorithmic stablecoins. The project was created in 2018 by Terraform Labs, a startup co-founded by Do Kwon and Daniel Shin. It is most known for its Terra stablecoin and the associated Luna reserve asset cryptocurrency.  
