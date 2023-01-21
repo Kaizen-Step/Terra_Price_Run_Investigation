@@ -13,7 +13,24 @@ week_days = ['Monday', 'Tuesday', 'Wednesday',
 # Layout
 st.set_page_config(page_title='Supply and Price - Terra Price Run',
                    page_icon=':bar_chart:', layout='wide')
-st.title('💰Supply and Price')
+st.title('🌌Swap and Price')
+
+st.text(" \n")
+st.subheader('Swaps to Luna Effect')
+st.text(" \n")
+
+st.write("""  
+The last part of this dashboard is related to the swaps of Luna.
+In my opinion, CEX swap volume is the main reason for token price changes, but we cannot access them, so we just consider DEX swaps based on the idea that CEX and DEX trades are correlated
+The metrics that consider are the number of transactions, volume, and the number of users in hourly charts.
+Metrics are divided into swaps from Luna and swaps to Luna.
+
+
+
+
+
+""")
+
 
 # Style
 with open('style.css')as f:
@@ -33,7 +50,6 @@ def get_data(query):
 Hourly_Swap_to_Luna_Vol_Num = get_data('Hourly_Swap_to_Luna_Vol_Num')
 Hourly_Swap_From_Luna_Vol_Num = get_data('Hourly_Swap_From_Luna_Vol_Num')
 
-st.subheader('Luna Price Charts')
 
 df = Hourly_Swap_to_Luna_Vol_Num
 df2 = Hourly_Swap_From_Luna_Vol_Num
@@ -77,6 +93,22 @@ fig.update_yaxes(
     title_text="Hourly Volume of Swaps to Luna", secondary_y=False)
 fig.update_yaxes(title_text="LUNA_PRICE", secondary_y=True)
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+st.text(" \n")
+st.subheader('Swaps From Luna Effect')
+st.text(" \n")
+
+st.write("""  
+As we know, Luna's price increased to 1.7 on Jan 9,17 UTC. In that period, there were more swaps and swappers to the Luna token than swaps and swappers from the Luna token.
+The volume of swaps to Luna tokens during that time was 337K, while the volume of swaps from Luna tokens was 480K.
+We see that all the above swap metrics have increased significantly since Luna's price was increased on 9 January.
+
+
+
+
+
+""")
+
 
 # Swaps Volume from Luna [Hourly]
 fig = sp.make_subplots(specs=[[{'secondary_y': True}]])

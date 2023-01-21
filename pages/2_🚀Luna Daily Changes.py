@@ -13,7 +13,23 @@ week_days = ['Monday', 'Tuesday', 'Wednesday',
 # Layout
 st.set_page_config(page_title='Luna Daily & Hourly Change - Terra Price Run',
                    page_icon=':bar_chart:', layout='wide')
-st.title('🚀Luna Daily & Hourly Change')
+
+
+st.title('🚀Luna Daily & Hourly Changes')
+
+st.text(" \n")
+st.subheader('Luna Price Changes')
+st.text(" \n")
+
+st.write("""  
+Our objective is to provide a better understanding of the Luna price changes through time by comparing it with 5 other tokens that were selected for comparison.
+All hourly charts on this dashboard were taken between 1 Jan 2023 and 17 Jan 2023. For daily charts, we consider a broader view starting from June 2022.  
+
+
+
+
+""")
+
 
 # Style
 with open('style.css')as f:
@@ -33,8 +49,6 @@ def get_data(query):
 Hourly_Price_Change = get_data('Hourly_Price_Change')
 Daily_Price_Change = get_data('Daily_Price_Change')
 
-
-st.subheader('Luna Price Charts')
 
 df = Hourly_Price_Change
 df2 = Daily_Price_Change
@@ -57,6 +71,14 @@ fig.update_layout(
 fig.update_yaxes(title_text='Price Change', secondary_y=False)
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
+st.text(" \n")
+st.write("""  
+On the hourly chart, Luna had the highest percentage increase and decrease in price change on 9 Jan with +16 % and -7.5 %, respectively.
+Additionally, Solana and Op had significant price changes on January 2 and 14.
+
+""")
+st.text(" \n")
+
 # Daily Price Change Comprison
 fig = sp.make_subplots(specs=[[{'secondary_y': True}]])
 fig.add_trace(go.Line(x=df2["DATE"], y=df2["SOL_CHANGE"],
@@ -73,3 +95,9 @@ fig.update_layout(
     title_text='Daily Price Change Comprison'.title())
 fig.update_yaxes(title_text='Price Change', secondary_y=False)
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+st.text(" \n")
+st.write("""  
+In the daily chart, Sol has the highest price change with 17 and 24.5 percent on 9, and 14 Jan.
+On 9 January, Luna's price changed by 16 percent.
+""")

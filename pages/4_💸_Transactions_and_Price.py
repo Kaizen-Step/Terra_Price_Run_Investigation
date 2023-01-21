@@ -13,7 +13,20 @@ week_days = ['Monday', 'Tuesday', 'Wednesday',
 # Layout
 st.set_page_config(page_title='Transaction and Price - Terra Price Run',
                    page_icon=':bar_chart:', layout='wide')
-st.title('💸Transaction and Price')
+st.title('💸Transactions and Price')
+
+st.text(" \n")
+st.subheader('On Chain Transactions')
+st.text(" \n")
+
+st.write("""  
+In this part, we take look at the on-chain transactions of the Luna token.
+The metrics that consider are the number of transactions, volume, and the number of users in hourly and daily charts.
+
+
+
+
+""")
 
 # Style
 with open('style.css')as f:
@@ -34,8 +47,6 @@ DailyLuna_TX_Volume_Price = get_data('DailyLuna_TX_Volume_Price')
 HourlyLuna_TX_Volume_Price = get_data('HourlyLuna_TX_Volume_Price')
 
 
-st.subheader('Luna Price Charts')
-
 df = DailyLuna_TX_Volume_Price
 df2 = HourlyLuna_TX_Volume_Price
 
@@ -53,32 +64,6 @@ fig.update_yaxes(
 fig.update_yaxes(title_text="LUNA_PRICE", secondary_y=True)
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
-# Luna Transactions & Volume [Daily]
-fig = sp.make_subplots(specs=[[{'secondary_y': True}]])
-fig.add_trace(go.Bar(x=df["DATE"], y=df["VOLUME"],
-                     name="VOLUME"), secondary_y=False)
-fig.add_trace(go.Line(x=df["DATE"], y=df["LUNA_PRICE"],
-                      name="LUNA_PRICE"), secondary_y=True)
-fig.update_layout(
-    title_text='Luna Transactions & Volume [Daily]')
-fig.update_yaxes(
-    title_text="VOLUME", secondary_y=False)
-fig.update_yaxes(title_text="LUNA_PRICE", secondary_y=True)
-st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
-# Luna Transactions & Users [Daily]
-fig = sp.make_subplots(specs=[[{'secondary_y': True}]])
-fig.add_trace(go.Bar(x=df["DATE"], y=df["Number of Users"],
-                     name="Number of Users"), secondary_y=False)
-fig.add_trace(go.Line(x=df["DATE"], y=df["LUNA_PRICE"],
-                      name="LUNA_PRICE"), secondary_y=True)
-fig.update_layout(
-    title_text='Luna Transactions & Users [Daily]')
-fig.update_yaxes(
-    title_text="Number of Users", secondary_y=False)
-fig.update_yaxes(title_text="Number of Users", secondary_y=True)
-st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
 # Luna Transactions & Price[Hourly]
 fig = sp.make_subplots(specs=[[{'secondary_y': True}]])
 fig.add_trace(go.Bar(x=df2["DATE"], y=df2["Number of Transactions"],
@@ -91,6 +76,29 @@ fig.update_yaxes(
     title_text="Number of Transactions", secondary_y=False)
 fig.update_yaxes(title_text="LUNA_PRICE", secondary_y=True)
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+st.text(" \n")
+st.subheader('Volume')
+st.text(" \n")
+st.write("""  
+Prior to the skyrocketing Luna price, this chart shows no particular pattern, but we can see a huge increase after 9 January. In other words, on-chain Luna activity doesn't have a significant effect on Luna's price, and vice versa it can lead to more on-chain activity when Luna's price rises.
+
+
+
+
+""")
+# Luna Transactions & Volume [Daily]
+fig = sp.make_subplots(specs=[[{'secondary_y': True}]])
+fig.add_trace(go.Bar(x=df["DATE"], y=df["VOLUME"],
+                     name="VOLUME"), secondary_y=False)
+fig.add_trace(go.Line(x=df["DATE"], y=df["LUNA_PRICE"],
+                      name="LUNA_PRICE"), secondary_y=True)
+fig.update_layout(
+    title_text='Luna Volume & Price[Daily]')
+fig.update_yaxes(
+    title_text="VOLUME", secondary_y=False)
+fig.update_yaxes(title_text="LUNA_PRICE", secondary_y=True)
+st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
 
 # Luna Transactions & Volume [Hourly]
 fig = sp.make_subplots(specs=[[{'secondary_y': True}]])
@@ -99,11 +107,30 @@ fig.add_trace(go.Bar(x=df2["DATE"], y=df2["VOLUME"],
 fig.add_trace(go.Line(x=df2["DATE"], y=df2["LUNA_PRICE"],
                       name="LUNA_PRICE"), secondary_y=True)
 fig.update_layout(
-    title_text='Luna Transactions & Volume [Hourly]')
+    title_text='Luna Volume & Price [Hourly]')
 fig.update_yaxes(
     title_text="VOLUME", secondary_y=False)
 fig.update_yaxes(title_text="LUNA_PRICE", secondary_y=True)
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+st.text(" \n")
+st.subheader('Number of Users')
+st.text(" \n")
+
+
+# Luna Transactions & Users [Daily]
+fig = sp.make_subplots(specs=[[{'secondary_y': True}]])
+fig.add_trace(go.Bar(x=df["DATE"], y=df["Number of Users"],
+                     name="Number of Users"), secondary_y=False)
+fig.add_trace(go.Line(x=df["DATE"], y=df["LUNA_PRICE"],
+                      name="LUNA_PRICE"), secondary_y=True)
+fig.update_layout(
+    title_text='Luna Users & Price[Daily]')
+fig.update_yaxes(
+    title_text="Number of Users", secondary_y=False)
+fig.update_yaxes(title_text="Number of Users", secondary_y=True)
+st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
 
 # Luna Transactions & Users [Hourly]
 fig = sp.make_subplots(specs=[[{'secondary_y': True}]])
@@ -112,7 +139,7 @@ fig.add_trace(go.Bar(x=df2["DATE"], y=df2["Number of Users"],
 fig.add_trace(go.Line(x=df2["DATE"], y=df2["LUNA_PRICE"],
                       name="LUNA_PRICE"), secondary_y=True)
 fig.update_layout(
-    title_text='Luna Transactions & Users [Hourly]')
+    title_text='Luna Users & Price [Hourly]')
 fig.update_yaxes(
     title_text="Number of Users", secondary_y=False)
 fig.update_yaxes(title_text="Number of Users", secondary_y=True)
