@@ -41,7 +41,7 @@ with open('style.css')as f:
 @st.cache()
 def get_data(query):
     if query == 'Hourly_Swap_to_Luna_Vol_Num':
-        return pd.read_json('https://node-api.flipsidecrypto.com/api/v2/queries/bf5c3d50-a8c2-49fa-bccf-51decd2b4866/data/latest')
+        return pd.read_json('https://node-api.flipsidecrypto.com/api/v2/queries/d130f03e-d2ab-4e28-b5a4-85325aff1354/data/latest')
     elif query == 'Hourly_Swap_From_Luna_Vol_Num':
         return pd.read_json('https://node-api.flipsidecrypto.com/api/v2/queries/e720740d-6e81-4d3f-bac0-ef7077849e0d/data/latest')
     return None
